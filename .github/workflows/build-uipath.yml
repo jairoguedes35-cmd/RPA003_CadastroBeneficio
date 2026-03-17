@@ -1,0 +1,71 @@
+name: UiPath CI/CD
+permissions:
+  contents: write
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+
+  build:
+    runs-on: windows-latest
+
+    steps:
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+
+      - name: Setup NuGet
+        uses: NuGet/setup-nuget@v2
+
+
+      - name: Download UiPath CLI
+        run: |
+          nuget install UiPath.CLI.Windows -Version 25.4.9414.17608 `
+          -OutputDirectory uipcli `
+          -Source https://uipath.pkgs.visualstudio.com/Public.Feeds/_packaging/UiPath-Official/nuget/v3/index.json
+
+
+      - name: Restore UiPath dependencies
+        shell: powershell
+        run: |
+          ./uipcli/UiPath.CLI.Windows.25.4.9414.17608/tools/uipcli.exe package restore . `
+          --restoreFolder packages `
+          --nugetConfigFilePath NuGet.Config
+
+
+      - name: Clean folders
+        shell: powershell
+        run: |
+          Remove-Item -Recurse -Force .\.local -ErrorAction SilentlyContinue
+          Remove-Item -Recurse -Force output -ErrorAction SilentlyContinue
+          New-Item -ItemType Directory -Path output
+
+
+      - name: Pack UiPath project
+        shell: powershell
+        run: |
+          $projectPath = Resolve-Path .
+          ./uipcli/UiPath.CLI.Windows.25.4.9414.17608/tools/uipcli.exe package pack $projectPath `
+          --output output `
+          --version 1.0.${{ github.run_number }}
+
+
+      - name: Upload package artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: uipath-package
+          path: output/*.nupkg
+
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: v1.0.${{ github.run_number }}
+          name: Release v1.0.${{ github.run_number }}
+          files: output/*.nupkg
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  
