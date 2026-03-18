@@ -4,7 +4,16 @@
     {
       "filePath": "Main.xaml",
       "uniqueId": "37c8b35a-755c-4ea4-8a81-7566836c5779",
-      "type": "process"
+      "type": "process",
+      "input": {
+        "type": "object",
+        "properties": {
+          "in_emailTo": {
+            "type": "string"
+          }
+        },
+        "required": []
+      }
     }
   ]
 }
