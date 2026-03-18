@@ -9,9 +9,9 @@
     "UiPath.GSuite.Activities": "[3.6.2-preview]",
     "UiPath.IntegrationService.Activities": "[1.23.0]",
     "UiPath.Mail.Activities": "[2.5.10]",
-    "UiPath.System.Activities": "[25.12.1]",
+    "UiPath.System.Activities": "26.2.0",
     "UiPath.UIAutomation.Activities": "[25.10.22]",
-    "UiPath.WebAPI.Activities": "[2.3.2]",
+    "UiPath.WebAPI.Activities": "2.4.0",
     "UiPathTeam.TextManipulation.Activities.Design": "[1.1.0]"
   },
   "webServices": [],
