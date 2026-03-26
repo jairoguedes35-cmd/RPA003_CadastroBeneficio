@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="CalcularIdade" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:ar="clr-namespace:AutoProcess_Orchestrator_library.Rastreamento;assembly=AutoProcess Orchestrator library" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="CalcularIdade" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="out_Idade" Type="OutArgument(x:Int32)" />
     <x:Property Name="in_AnoNascimento" Type="InArgument(x:Int32)" />
@@ -122,7 +122,7 @@
       <AssemblyReference>System.Net.Sockets</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="CalcularIdade" sap:VirtualizedContainerService.HintSize="733.6,631.6566666666666" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="CalcularIdade" sap:VirtualizedContainerService.HintSize="736,634.0566666666667" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:Int32" Default="[now.year]" Name="AnoAtual" />
     </Sequence.Variables>
@@ -131,8 +131,7 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ar:Log_message DisplayName="Log message" sap:VirtualizedContainerService.HintSize="449.6,174.4" sap2010:WorkflowViewState.IdRef="Log_message_1" Level="info" Message="[&quot;Calculando a idade de quem nasceu em &quot;+ in_AnoNascimento.tostring]" />
-    <Assign sap:VirtualizedContainerService.HintSize="449.6,174.4" sap2010:WorkflowViewState.IdRef="Assign_2">
+    <Assign sap:VirtualizedContainerService.HintSize="449.6,165.6" sap2010:WorkflowViewState.IdRef="Assign_2">
       <Assign.To>
         <OutArgument x:TypeArguments="x:Int32">[out_Idade]</OutArgument>
       </Assign.To>
@@ -140,6 +139,5 @@
         <InArgument x:TypeArguments="x:Int32">[AnoAtual-in_AnoNascimento]</InArgument>
       </Assign.Value>
     </Assign>
-    <ar:Log_message DisplayName="Log message" sap:VirtualizedContainerService.HintSize="449.6,165.6" sap2010:WorkflowViewState.IdRef="Log_message_2" Level="info" Message="[&quot;Idade calculada: &quot; + out_Idade.tostring + &quot; anos&quot;]" />
   </Sequence>
 </Activity>
